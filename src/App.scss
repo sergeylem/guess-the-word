@@ -1,0 +1,120 @@
+.App {
+  text-align: center;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100vw;
+}
+
+.form-fade-animation {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100vw;  
+  animation: fade-in-keyframes 2s;  
+}
+@keyframes fade-in-keyframes {
+  from {opacity: 0}
+  to {opacity: 1}
+}
+
+.title {
+  margin-top: 2rem;
+  font-family: georgia;
+  font-size: 2rem; 
+  color: red;
+}
+
+.image {
+  height: 32vh;  
+  border-radius: 0.8rem;
+  margin-top: 3rem;
+}
+
+.button {
+  text-align: center;
+  height: 4rem;
+  width: 4rem;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  margin: 4rem 0.4rem 0.4rem 0.4rem; 
+  border-width: .25rem;
+  box-shadow: 4px 4px 8px 0px rgba( 0, 0, 0, 0.2 );
+  font-size: 1.5rem;
+  font-family: georgia;
+  font-weight: bold;
+  background-color: #9eebcf;  
+  
+  &:hover {
+      cursor: pointer;
+      transform: scale(1.05);
+      transition: transform 1s cubic-bezier(0.25, 0.45, 0.45, 0.95);
+      background-color: #88ecc8;  
+    }  
+}
+
+.word {
+  margin-top: 2rem;
+  font-family: georgia;
+  font-size: 2rem; 
+  font-weight: bold;
+}
+
+.words {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 500vw; //it was 50vw
+}
+
+.arrow-next {
+  margin-top: 2rem;
+  height: 7rem;
+  width: 7rem;  
+  
+  &:hover {
+    cursor: pointer;
+    opacity: 0.8;  
+  }  
+
+}
+
+@media screen and (max-width: 800px) {
+  .title {
+    font-size: 1.5rem; 
+  }  
+  .image {
+    height: 18vh;  
+    margin-bottom: 1rem;
+  }
+  .word {
+    margin-top: 1rem;
+    font-family: georgia;
+    font-size: 1.2rem; 
+    font-weight: bold;
+  }
+  
+  .arrow-next {
+  margin-top: 2rem;
+  height: 4rem;
+  width: 5rem;
+ }
+
+  .button {
+    height: 3rem;
+    width: 3rem;
+    margin: 2rem 0.3rem 0.3rem 0.3rem;
+    font-size: 1rem;
+    
+    &:hover {
+        cursor: pointer;
+        transform: scale(1.05);
+        transition: transform 1s cubic-bezier(0.25, 0.45, 0.45, 0.95);
+        background-color: #88ecc8;  
+      }  
+  }
+}
+
