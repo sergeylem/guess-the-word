@@ -1,9 +1,7 @@
 import React from 'react';
 import Button from './components/button/button';
 import './App.scss';
-import {
-  getRndNumber, putUnderscores, getRndLetters,
-} from './utils';
+import { getRndNumber, putUnderscores, getRndLetters } from './utils';
 import DATA from './data/words-data';
 
 import Confetti from './components/confetti/confetti';
@@ -125,8 +123,8 @@ class App extends React.Component {
 
         <div className='title'> 
         {!this.state.isGameOver ? 
-          "Угадай слово!" :
-          "Молодец Поздравляем!" 
+          "Guess the word!" :
+          "Well done! Congratulations!" 
         }
         </div>
 
