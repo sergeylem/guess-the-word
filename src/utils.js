@@ -12,7 +12,7 @@ export const getRndNumbers = (max) => {
 }
 
 export const getRndLetter = () => {
-  const alphabet = 'АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ';
+  const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
   const alphabetLetters = [...alphabet];
   let rndLetter = '';
   const index = getRndNumber(0, alphabet.length - 1)
