@@ -7,6 +7,7 @@
   flex-direction: column;
   align-items: center;
   width: 100vw;
+  //  min-height: 800px;
 }
 
 .form-fade-animation {
@@ -58,7 +59,7 @@
 
 .word {
   margin-top: 2rem;
-  font-family: georgia;
+  // font-family: georgia;
   font-size: 2rem; 
   font-weight: bold;
 }
@@ -87,12 +88,13 @@
     font-size: 1.5rem; 
   }  
   .image {
-    //height: 18vh;  
-    margin-bottom: 1rem;
+    min-height: 220px;
+    max-height: 280px;  
+    margin-bottom: 1.5rem;
   }
   .word {
     margin-top: 1rem;
-    font-family: georgia;
+    // font-family: georgia;
     font-size: 1.2rem; 
     font-weight: bold;
   }
@@ -123,27 +125,28 @@
     font-size: 1.2rem; 
   }  
   .image {
-    //height: 18vh;  
-    margin-bottom: 0.8rem;
+    min-height: 150px;  
+    max-height: 200px;  
+    margin-bottom: 1.4rem;
   }
   .word {
-    margin-top: 0.5rem;
-    font-family: georgia;
-    font-size: 0.5rem; 
+    margin-top: 0.8rem;
+    // font-family: georgia;
+    font-size: 0.9rem; 
     font-weight: bold;
   }
   
   .arrow-next {
-  margin-top: 2rem;
-  height: 4rem;
-  width: 5rem;
+  margin-top: 1.6rem;
+  height: 3rem;
+  width: 4rem;
  }
 
   .button {
     height: 1.0rem;
     width: 1.0rem;
-    margin: 1.5rem 0.15rem 0.15rem 0.15rem;
-    font-size: 1rem;
+    margin: 1.5rem 0.2rem 0.2rem 0.2rem;
+    font-size: 0.8rem;
     
     &:hover {
         cursor: pointer;
