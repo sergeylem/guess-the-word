@@ -1,15 +1,18 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import Button from './components/button/button';
 import './App.scss';
 import { getRndNumber, putUnderscores, getRndLetters } from './utils';
-import data from './data/words-data';
+import DATA from './data/words-data';
 
 import Confetti from './components/confetti/confetti';
 import PlaySound from './components/play-sound';
 
-const App = () =>  {
+class App extends React.Component {
+  state = DATA;
 
-  useEffect( () => initialState(), []); 
+  componentDidMount = () => {
+    this.initialState();
+  }
 
   onAnimationEnd = () => {
     this.setState({ isFade: false })
@@ -25,8 +28,8 @@ const App = () =>  {
       }
     }
     const isGuessed = this.isTheWordGuessed(userLetters);
-    let isGameOver = data.isGameOver;
-    if (data.words.length === 1) {
+    let isGameOver = this.state.isGameOver;
+    if (this.state.words.length === 1) {
       isGameOver = true;
     }
 
@@ -54,8 +57,8 @@ const App = () =>  {
   }
 
   isTheWordGuessed = (userLetters) => {
-    for (let i = 0; i < data.targetLetters.length; i++) {
-      if (userLetters[i] !== data.targetLetters[i]) {
+    for (let i = 0; i < this.state.targetLetters.length; i++) {
+      if (userLetters[i] !== this.state.targetLetters[i]) {
         return false;
       }
     }
@@ -66,13 +69,13 @@ const App = () =>  {
 //    console.log('words ');
 //    console.log(this.state.words);
 
-    const removedId = data.targetWordId;
-    let tmpArray = data.words;  //words записываю во временный массив 
+    const removedId = this.state.targetWordId;
+    let tmpArray = this.state.words;  //words записываю во временный массив 
     const removedIndex = tmpArray.findIndex(idWord => idWord.id === removedId);
 
     tmpArray.splice(removedIndex, 1);  //Удаляю word из words
 
-    const maxCountWords = data.maxCountWords - 1;
+    const maxCountWords = this.state.maxCountWords - 1;
     if (maxCountWords >= 0) {
       const newIndex = getRndNumber(0, maxCountWords);
       const newTargetLetters = [...tmpArray[newIndex].word];
@@ -96,9 +99,9 @@ const App = () =>  {
   initialState = () => {
 //    console.log(this.state.words);
 
-    const index = getRndNumber(0, data.maxCountWords); //index of random array of words
-    const targetLetters = [...data.words[index].word];
-    const targetWordId = data.words[index].id;
+    const index = getRndNumber(0, this.state.maxCountWords); //index of random array of words
+    const targetLetters = [...this.state.words[index].word];
+    const targetWordId = this.state.words[index].id;
     const userLetters = putUnderscores(targetLetters.length);
     const countLettersToAdd = 0; //Math.floor(targetLetters.length / 3);
     const rndLetters = getRndLetters(targetLetters, countLettersToAdd);
@@ -106,13 +109,13 @@ const App = () =>  {
     const viewportWidth = window.innerWidth;
     const viewportHeight = window.innerHeight;
     this.setState({
-      targetWordId, targetWordIndex: index, targetLetters: [...data.words[index].word],
+      targetWordId, targetWordIndex: index, targetLetters: [...this.state.words[index].word],
       userLetters, rndLetters, viewportWidth, viewportHeight
     });
   }
 
   render() {
-    const isFade = data.isFade
+    const isFade = this.state.isFade
     return (
       <div className={isFade ? 'form-fade-animation' : 'form'}
         //onAnimationEnd={() => this.onAnimationEnd()} 
@@ -126,29 +129,29 @@ const App = () =>  {
         </div>
 
         <img className='image'
-          src={this.state.words[data.targetWordIndex].img} alt='' />
+          src={this.state.words[this.state.targetWordIndex].img} alt='' />
 
-        {!data.isGuessed ?
+        {!this.state.isGuessed ?
           <div>
             <div className='words'>
-              {data.userLetters.map((item, index) => (
+              {this.state.userLetters.map((item, index) => (
                 <Button letter={item} key={index}
                   click={this.delLetter.bind(
-                    this, item, data.userLetters, data.rndLetters, index)} />
+                    this, item, this.state.userLetters, this.state.rndLetters, index)} />
               ))}
             </div>
 
             <div className='words'>
-              {data.rndLetters.map((item, index) => (
+              {this.state.rndLetters.map((item, index) => (
                 <Button letter={item} key={index}
                   click={this.addLetter.bind(
-                    this, item, data.userLetters, data.rndLetters, index)} />
+                    this, item, this.state.userLetters, this.state.rndLetters, index)} />
               ))}
             </div>
-            {data.isConfetti ?
+            {this.state.isConfetti ?
               <div>
-                <Confetti viewportWidth={data.viewportWidth}
-                  viewportHeight={data.viewportHeight}
+                <Confetti viewportWidth={this.state.viewportWidth}
+                  viewportHeight={this.state.viewportHeight}
                   numberOfPieces={'100'} />
                 <PlaySound urlStr={require('./assets/sounds/s2.mp3')} />
               </div> :
@@ -156,8 +159,8 @@ const App = () =>  {
             }
           </div> :
           <div>
-            <div className='word'>{data.targetLetters}</div>
-            {!data.isGameOver
+            <div className='word'>{this.state.targetLetters}</div>
+            {!this.state.isGameOver
               ? <img
                   className={'arrow-next'}
                   src={require('./assets/icons/arrow-next.png')} alt=''
