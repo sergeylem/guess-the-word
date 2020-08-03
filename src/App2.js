@@ -118,7 +118,7 @@ class App extends React.Component {
     const isFade = this.state.isFade
     return (
       <div className={isFade ? 'form-fade-animation' : 'form'}
-        //onAnimationEnd={() => this.onAnimationEnd()} 
+        onAnimationEnd={() => this.onAnimationEnd()} 
       >
 
         <div className='title'> 
