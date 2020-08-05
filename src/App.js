@@ -27,7 +27,6 @@ const App = () => {
 
   const initialState = () => {
     //    console.log(words);
-
     const index = getRndNumber(0, maxCountWords); //index of random array of words
     const _targetLetters = [...words[index].word];
     const _targetWordId = words[index].id;
@@ -45,11 +44,6 @@ const App = () => {
     setRndLetters(_rndLetters);
     setViewportWidth(viewportWidth);
     setViewportHeight(viewportHeight);
-
-    // this.setState({
-    //   targetWordId, targetWordIndex: index, targetLetters: [...words[index].word],
-    //   userLetters, rndLetters, viewportWidth, viewportHeight
-    // });
   }
 
   const isTheWordGuessed = () => {
@@ -65,6 +59,7 @@ const App = () => {
     const underscore = ' ';
     const _userLetters = userLetters;
     const _rndLetters = rndLetters;
+    
     for (let i = 0; i < _userLetters.length; i++) {
       if (_userLetters[i] === underscore) {
         _userLetters[i] = newLetter;
@@ -80,14 +75,11 @@ const App = () => {
       _isGameOver = true;
     }
 
-    console.log("_userLetters: " + _userLetters);
-    console.log('_isGuessed1 from addLetter ' + _isGuessed);
+    // console.log("userLetters: " + userLetters);
+    // console.log("targetLetters: " + targetLetters);
 
-    setUserLetters(_userLetters);
-    setRndLetters(_rndLetters);
-
-    console.log("userLetters: " + userLetters);
-    console.log('_isGuessed2 from addLetter ' + _isGuessed);
+    setUserLetters([..._userLetters]);
+    setRndLetters([..._rndLetters]);
 
     if (_isGuessed) {
       setConfetti(true);
@@ -97,15 +89,22 @@ const App = () => {
   }
 
   const delLetter = (letter, index) => {
-    for (let i = 0; i < rndLetters.length; i++) {
-      if (rndLetters[i] === ' ') {
-        rndLetters[i] = letter;
-        userLetters[index] = ' ';
-        i = rndLetters.length; //остановка цикла
+    const _userLetters = userLetters;
+    const _rndLetters = rndLetters;
+
+    for (let i = 0; i < _rndLetters.length; i++) {
+      if (_rndLetters[i] === ' ') {
+        _rndLetters[i] = letter;
+        _userLetters[index] = ' ';
+        i = _rndLetters.length; //stop cycle
       }
     }
-    setUserLetters(userLetters);
-    setRndLetters(rndLetters);
+
+    // console.log("userLetters: " + userLetters);
+    // console.log("targetLetters: " + targetLetters);
+
+    setUserLetters([..._userLetters]);
+    setRndLetters([..._rndLetters]);
   }
 
   const removeItemFromWords = () => {
@@ -119,18 +118,18 @@ const App = () => {
     tmpArray.splice(removedIndex, 1);  //Удаляю word из words
 
     //    const maxCountWords = maxCountWords - 1;
-    setMaxCountWords(maxCountWords - 1);
-    if (maxCountWords >= 0) {
-      const newIndex = getRndNumber(0, maxCountWords);
+    const _maxCountWords = maxCountWords - 1;
+    if (_maxCountWords >= 0) {
+      const newIndex = getRndNumber(0, _maxCountWords);
       const newTargetLetters = [...tmpArray[newIndex].word];
       const newWordId = tmpArray[newIndex].id;
 
       // const userLetters = putUnderscores(newTargetLetters.length);
-      const userLetters = putUnderscores(newTargetLetters.length);
+      const _userLetters = putUnderscores(newTargetLetters.length);
       const countLettersToAdd = 0; //Math.floor(newTargetLetters.length / 3);
 
-      const targetLetters = [...newTargetLetters]; //it's must be, as targetLetters will be changed
-      const rndLetters = getRndLetters(targetLetters, countLettersToAdd)
+      const _targetLetters = [...newTargetLetters]; //it's must be, as targetLetters will be changed
+      const _rndLetters = getRndLetters(_targetLetters, countLettersToAdd)
       //      console.log('rndLetters: ' + rndLetters);
 
 
@@ -138,9 +137,9 @@ const App = () => {
       setTargetLetters(newTargetLetters);
       setTargetWordId(newWordId);
       setTargetWordIndex(newIndex);
-      setUserLetters(userLetters);
-      setRndLetters(rndLetters);
-      setMaxCountWords(maxCountWords);
+      setUserLetters(_userLetters);
+      setRndLetters(_rndLetters);
+      setMaxCountWords(_maxCountWords);
       setGuessed(false);
       setFade(true);
 
@@ -155,7 +154,6 @@ const App = () => {
   return (
     <div className={isFade ? 'form-fade-animation' : 'form'}
     >
-
       <div className='title'>
         {!isGameOver ?
           "Guess the word!" :
