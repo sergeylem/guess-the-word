@@ -75,9 +75,6 @@ const App = () => {
       _isGameOver = true;
     }
 
-    // console.log("userLetters: " + userLetters);
-    // console.log("targetLetters: " + targetLetters);
-
     setUserLetters([..._userLetters]);
     setRndLetters([..._rndLetters]);
 
@@ -100,17 +97,11 @@ const App = () => {
       }
     }
 
-    // console.log("userLetters: " + userLetters);
-    // console.log("targetLetters: " + targetLetters);
-
     setUserLetters([..._userLetters]);
     setRndLetters([..._rndLetters]);
   }
 
   const removeItemFromWords = () => {
-    //    console.log('words ');
-    //    console.log(words);
-
     const removedId = targetWordId;
     let tmpArray = words;  //words записываю во временный массив 
     const removedIndex = tmpArray.findIndex(idWord => idWord.id === removedId);
@@ -130,8 +121,6 @@ const App = () => {
 
       const _targetLetters = [...newTargetLetters]; //it's must be, as targetLetters will be changed
       const _rndLetters = getRndLetters(_targetLetters, countLettersToAdd)
-      //      console.log('rndLetters: ' + rndLetters);
-
 
       setWords(tmpArray);
       setTargetLetters(newTargetLetters);
@@ -142,12 +131,6 @@ const App = () => {
       setMaxCountWords(_maxCountWords);
       setGuessed(false);
       setFade(true);
-
-      // this.setState({
-      //   words: tmpArray,
-      //   targetLetters: newTargetLetters, targetWordId: newWordId, targetWordIndex: newIndex,
-      //   userLetters, rndLetters, maxCountWords, isGuessed: false, isFade: true
-      // });
     }
   }
 
