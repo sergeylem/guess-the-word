@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Button from './components/button/button';
 import './App.scss';
-import { getRndNumber, putUnderscores, getRndLetters } from './utils';
+import { getRndNumber, putUnderscores, getRndLetters } from './helpers/utils';
 import data from './data/words-data';
 
 import Confetti from './components/confetti/confetti';
