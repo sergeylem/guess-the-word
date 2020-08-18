@@ -5,7 +5,7 @@ import { getRndNumber, putUnderscores, getRndLetters } from './helpers/utils';
 import data from './data/words-data';
 
 import Confetti from './components/confetti/confetti';
-import PlaySound from './components/play-sound';
+import PlaySound from './components/play-sound/play-sound';
 
 const App = () => {
 
