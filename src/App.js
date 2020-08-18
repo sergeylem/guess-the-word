@@ -71,9 +71,10 @@ const App = () => {
 
     let _isGameOver = isGameOver;
 
-    if (words.length === 1) {
+    if (words.length === 2) {
       _isGameOver = true;
     }
+    console.log("words.length: " + words.length);
 
     setUserLetters([..._userLetters]);
     setRndLetters([..._rndLetters]);
@@ -167,7 +168,7 @@ const App = () => {
               <Confetti viewportWidth={viewportWidth}
                 viewportHeight={viewportHeight}
                 numberOfPieces={'100'} />
-              <PlaySound urlStr={require('./assets/sounds/s2.mp3')} />
+              <PlaySound urlStr='/assets/sounds/s2.mp3' />
             </div> :
             null
           }
@@ -181,7 +182,7 @@ const App = () => {
               onClick={() => removeItemFromWords()}
             />
             :
-            <PlaySound urlStr={require('./assets/sounds/victory.mp3')} />
+            <PlaySound urlStr='/assets/sounds/victory.mp3' />
           }
         </div>
       }
