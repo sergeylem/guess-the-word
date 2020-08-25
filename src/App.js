@@ -178,7 +178,7 @@ const App = () => {
           {!isGameOver
             ? <img
               className={'arrow-next'}
-              src={require('./assets/icons/arrow-next.png')} alt=''
+              src='/assets/icons/arrow-next.png' alt=''
               onClick={() => removeItemFromWords()}
             />
             :
