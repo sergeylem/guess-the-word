@@ -6,6 +6,10 @@ const playSound = (props) => {
   return <ReactPlayer  
     playing
     url={[props.urlStr]}
+    config={{
+      file: {
+      }
+    }}
   />
 };
 
